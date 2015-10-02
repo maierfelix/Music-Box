@@ -29,9 +29,9 @@
    * Play a frequency
    * @param {Number} [freq]
    * @param {Number} [vol]
-   * @method play
+   * @method playFrequency
    */
-  MusicBox.prototype.play = function(freq, vol) {
+  MusicBox.prototype.playFrequency = function(freq, vol) {
 
     var envelope = this.context.createGain();
         envelope.gain.setValueAtTime(vol / 100, this.context.currentTime);
@@ -71,12 +71,23 @@
 
     if (data[0] !== void 0 &&
         data[1] !== void 0) {
-      this.play(this.noteToFrequency(data[0], data[1]), data[3] || this.volume);
+      this.playFrequency(this.noteToFrequency(data[0], data[1]), data[3] || this.volume);
     }
 
     setTimeout(function() {
       self.playNotes(notes);
     }, data[2] ? ((data[2] * 10) * this.bpm) : this.bpm * 10);
+
+  };
+
+  /**
+   * Start playing
+   * @param {Array} [notes]
+   * @method play
+   */
+  MusicBox.prototype.play = function(notes) {
+
+    this.playNotes(notes.slice(0));
 
   };
 
