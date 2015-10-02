@@ -60,9 +60,9 @@
 
   window.addEventListener('keydown', function(e) {
 
-    bass.playNotes(bass_notes);
+    bass.play(bass_notes.slice(0));
 
-    melody.playNotes(melody_notes);
+    melody.play(melody_notes.slice(0));
 
   });
 
